@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
   <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
   <arg name="load_robot_description" default="false"/>
@@ -23,6 +24,11 @@
   <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
   <group ns="$(arg robot_description)_kinematics">
     <rosparam command="load" file="$(find ur5_moveit_config)/config/kinematics.yaml"/>
+  </group>
+
+  <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
+  <group ns="$(arg robot_description)_voxels">
+    <param name="urdf_path" value="$(find ur_description)/binvoxels/ur5/ur5.urdf"/>
   </group>
   
 </launch>
