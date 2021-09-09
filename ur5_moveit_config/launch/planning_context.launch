@@ -29,6 +29,7 @@
   <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
   <group ns="$(arg robot_description)_voxels">
     <param name="urdf_path" value="$(find ur_description)/binvoxels/ur5/ur5.urdf"/>
+    <!-- <param name="urdf_path" value="$(find ur_description)/binvoxels/ur10_coarse/ur10_joint_limited_robot.urdf"/> -->
   </group>
   
 </launch>
