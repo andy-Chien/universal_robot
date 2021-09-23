@@ -50,18 +50,8 @@
     <param name="jiggle_fraction" value="$(arg jiggle_fraction)" />
 
     <!-- MoveGroup capabilities to load -->
-    <!-- <param name="capabilities" value="move_group/MoveGroupCartesianPathService
-				      move_group/MoveGroupExecuteTrajectoryAction
-				      move_group/MoveGroupKinematicsService
-				      move_group/MoveGroupMoveAction
-				      move_group/MoveGroupPickPlaceAction
-				      move_group/MoveGroupPlanService
-				      move_group/MoveGroupQueryPlannersService
-				      move_group/MoveGroupStateValidationService
-				      move_group/MoveGroupGetPlanningSceneService
-				      move_group/ClearOctomapService
-              " /> -->
-    <param name="capabilities" value="move_group/MoveGroupCartesianPathService
+    <param name="capabilities" value="
+              move_group/MoveGroupCartesianPathService
 				      moveit_capability/MoveGroupExecuteTrajectoryAction
 				      move_group/MoveGroupKinematicsService
 				      moveit_capability/MoveGroupMoveAction
@@ -71,6 +61,10 @@
 				      move_group/MoveGroupStateValidationService
 				      move_group/MoveGroupGetPlanningSceneService
 				      move_group/ClearOctomapService
+              " />
+    <param name="disable_capabilities" value="
+				      move_group/MoveGroupExecuteTrajectoryAction
+				      move_group/MoveGroupMoveAction
               " />
 
     <!-- Publish the planning scene of the physical robot so that rviz plugin can know actual robot -->
