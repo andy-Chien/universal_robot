@@ -11,7 +11,7 @@
 
   <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
   <include file="$(find ur5_moveit_config)/launch/planning_context.launch">
-    <arg name="load_robot_description" value="true"/>
+    <arg name="load_robot_description" value="false"/>
     <arg name="limited" value="$(arg limited)"/>
   </include>
 
@@ -19,24 +19,25 @@
   
 
   <!-- We do not have a robot connected, so publish fake joint states -->
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     <param name="/use_gui" value="false"/> 
     <rosparam param="/source_list">[/move_group/fake_controller_joint_states]</rosparam>
-  </node>
+  </node> -->
   
   <!-- Given the published joint states, publish tf for the robot links -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
-  <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_1" args="-1.3 0 0 0 0 0 base_link camera_link" />
-  <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_2" args="0.2 0 0 0 0 0 base_link camera_depth_optical_frame" />
-  <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_3" args="0.582053 0.031955 1.098651 1.555002 -0.008946 3.115549 base_link rgb_camera_link" />
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" /> -->
+  <remap from="/follow_joint_trajectory" to="/scaled_pos_joint_traj_controller/follow_joint_trajectory"/>
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_0" args="0 0 0 0 0 0 world base_link" /> -->
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_1" args="-1.3 0 0 0 0 0 base_link camera_link" /> -->
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_2" args="0.2 0 0 0 0 0 base_link camera_depth_optical_frame" /> -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_3" args="0.582053 0.031955 1.098651 1.555002 -0.008946 3.115549 base rgb_camera_link" />
   <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) 3.115549 -0.008946 1.555002-->
   <include file="$(find ur5_moveit_config)/launch/move_group.launch">
     <arg name="allow_trajectory_execution" value="true"/>  
-    <arg name="fake_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
-
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
   <include file="$(find ur5_moveit_config)/launch/moveit_rviz.launch">
     <arg name="config" value="true"/>
