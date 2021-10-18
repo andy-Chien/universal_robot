@@ -3,7 +3,7 @@
   <!-- This file makes it easy to include the settings for sensor managers -->  
 
   <!-- Params for the octomap monitor -->
-  <rosparam command="load" file="$(find ur5_moveit_config)/config/sensors_realsense_pointcloud.yaml" />
+  <rosparam command="load" file="$(find ur5_moveit_config)/config/sensors_azure_pointcloud.yaml" />
   <param name="octomap_frame" type="string" value="base_link" />
 
   <param name="octomap_resolution" type="double" value="0.01" />
