@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <link name="suction_tool">
+        <visual>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://ur_description/meshes/tool/suction_tool.stl" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://ur_description/meshes/tool/suction_tool.stl" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="suction_tool-tool_tip" type="fixed">
+        <origin xyz="0 0 0.16" rpy="0 0 0"/>
+        <parent link="suction_tool"/>
+        <child link="tool_tip"/>
+    </joint>
+    <link name="tool_tip"/>
+</robot>
