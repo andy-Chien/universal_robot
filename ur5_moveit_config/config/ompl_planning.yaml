@@ -108,6 +108,16 @@ planner_configs:
     range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup()
   LazyPRMstar:
     type: geometric::LazyPRMstar
+  AdaptPRM:
+    type: geometric::AdaptPRM
+    optimization_objective: PathLengthUtilizationOptimizationObjective
+    # interpolate: false
+    # range: 0.0  # Max motion added to tree. ==> maxDistance_ default: 0.0, if 0.0, set on setup() 
+    multi_query_planning_enabled: true
+    optimization_threshold: 1.3
+    distance_weight: 0.8
+    store_planner_data: true
+    load_planner_data: true
   SPARS:
     type: geometric::SPARS
     stretch_factor: 3.0  # roadmap spanner stretch factor. multiplicative upper bound on path quality. It does not make sense to make this parameter more than 3. default: 3.0
@@ -121,52 +131,56 @@ planner_configs:
     dense_delta_fraction: 0.001  # delta fraction for interface detection. default: 0.001
     max_failures: 5000  # maximum consecutive failure limit. default: 5000
 manipulator:
+  default_planner_config: AdaptPRM
   planner_configs:
-    - SBL
-    - EST
-    - LBKPIECE
-    - BKPIECE
-    - KPIECE
-    - RRT
+    # - SBL
+    # - EST
+    # - LBKPIECE
+    # - BKPIECE
+    # - KPIECE
+    # - RRT
     - RRTConnect
-    - RRTstar
-    - TRRT
+    # - RRTstar
+    # - TRRT
     - PRM
     - PRMstar
-    - FMT
-    - BFMT
-    - PDST
-    - STRIDE
+    # - FMT
+    # - BFMT
+    # - PDST
+    # - STRIDE
     - BiTRRT
     - LBTRRT
-    - BiEST
-    - ProjEST
+    # - BiEST
+    # - ProjEST
     - LazyPRM
-    - LazyPRMstar
-    - SPARS
-    - SPARStwo
+    # - LazyPRMstar
+    # - SPARS
+    # - SPARStwo
+    - AdaptPRM
 endeffector:
+  default_planner_config: AdaptPRM
   planner_configs:
-    - SBL
-    - EST
-    - LBKPIECE
-    - BKPIECE
-    - KPIECE
-    - RRT
+    # - SBL
+    # - EST
+    # - LBKPIECE
+    # - BKPIECE
+    # - KPIECE
+    # - RRT
     - RRTConnect
-    - RRTstar
-    - TRRT
+    # - RRTstar
+    # - TRRT
     - PRM
     - PRMstar
-    - FMT
-    - BFMT
-    - PDST
-    - STRIDE
+    # - FMT
+    # - BFMT
+    # - PDST
+    # - STRIDE
     - BiTRRT
     - LBTRRT
-    - BiEST
-    - ProjEST
+    # - BiEST
+    # - ProjEST
     - LazyPRM
-    - LazyPRMstar
-    - SPARS
-    - SPARStwo
+    # - LazyPRMstar
+    # - SPARS
+    # - SPARStwo
+    - AdaptPRM

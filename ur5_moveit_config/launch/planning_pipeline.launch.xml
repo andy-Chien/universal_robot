@@ -4,7 +4,8 @@
        It is assumed that all planning pipelines are named XXX_planning_pipeline.launch  -->
 
   <arg name="pipeline" default="ompl" />
+  <arg name="roadmap_fname" default="adapt_prm" />
 
   <include file="$(find ur5_moveit_config)/launch/$(arg pipeline)_planning_pipeline.launch.xml" />
-
+  <param name="planner_configs/AdaptPRM/planner_data_path" value="$(find motion_plan)/cfg/roadmap/$(arg roadmap_fname).graph"/>
 </launch>
